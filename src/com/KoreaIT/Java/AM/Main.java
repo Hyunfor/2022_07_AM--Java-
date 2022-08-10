@@ -10,23 +10,21 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		
 		while (true) {
-			System.out.println("명령어) ");
+			System.out.println("명령어)");
 			String cmd = sc.nextLine();
 			
 			if(cmd.equals("exit")) {
 				break;
 			}
-			if (cmd.length() == 0) {
+			if(cmd.length() == 0) { // 키보드 커맨드가 0인경우
 				System.out.println("명령어를 입력해주세요.");
 				continue;
 			}
-			else if(cmd.equals("article list")) {
+			if(cmd.equals("article list")) {
 				System.out.println("게시글이 없습니다.");
-			} else if(cmd.equals("article write")) {
-				System.out.println("제목 : ");
-				System.out.println("내용 : ");
 			} else {
-				System.out.println("존재하지 않는 명령어 입니다.");
+					System.out.println("존재하지 않는 명령어 입니다.");
+			}
 		}
 		
 		sc.close();
@@ -35,5 +33,4 @@ public class Main {
 
 	}
 		
-	}
 }
