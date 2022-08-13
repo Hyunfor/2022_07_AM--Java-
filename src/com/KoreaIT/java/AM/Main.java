@@ -16,7 +16,8 @@ public class Main {
 		
 		while(true) { // 명령어 무한 반복
 			System.out.printf("명령어) ");
-			String cmd = sc.nextLine(); // cmd는 사용자가 직접 입력하는것. - 키보드
+			String cmd = sc.nextLine().trim(); // cmd는 사용자가 직접 입력하는것. - 키보드
+			// trim()은 공백도 인식함.
 			
 			if(cmd.equals("exit")) { // 프로그램 종료
 				break;
@@ -43,7 +44,7 @@ public class Main {
 			} else if(cmd.equals("article list")) {
 				
 				if(articles.size() == 0) {
-					System.out.println("게시글이 없습니다."); // 에러 뜸 영상보고 다시.
+					System.out.println("게시글이 없습니다."); 
 					continue;
 				}
 				System.out.println("번호  |  제목");
@@ -52,6 +53,8 @@ public class Main {
 					System.out.printf("%4d  |  %s\n", article.id, article.title); // 숫자 ~~d% 몇칸 확보.
 				}
 				
+			} else if (cmd.startsWith("article detail ")) {
+				System.out.printf("%d번 게시글은 존재하지 않습니다.\n", 1);
 			} else {
 				System.out.println("존재하지 않는 명령어입니다.");
 			}
