@@ -41,13 +41,15 @@ public class Main {
 				
 				System.out.printf("%d번 글이 생성되었습니다.\n", id);
 			} else if(cmd.equals("article list")) {
-				System.out.println("게시글이 없습니다.");
 				
 				if(articles.size() == 0) {
-					System.out.println("게시글이 없습니다.");
+					System.out.println("게시글이 없습니다."); // 에러 뜸 영상보고 다시.
 					continue;
-				} else {
-					System.out.println("게시글이 있습니다.");
+				}
+				System.out.println("번호  |  제목");
+				for(int i = articles.size() - 1; i >= 0; i--) { // 게시판 글확인은 역순으로.
+					Article article = articles.get(i);	
+					System.out.printf("%4d  |  %s\n", article.id, article.title); // 숫자 ~~d% 몇칸 확보.
 				}
 				
 			} else {
