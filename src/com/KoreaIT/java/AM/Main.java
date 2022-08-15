@@ -30,13 +30,14 @@ public class Main {
 			if(cmd.equals("article write")) {
 				int id = lastArticleId + 1;
 				lastArticleId = id; // id에 덮어씌워 1씩 증가
+				String regDate = Util.getDateStr();
 				System.out.println("제목 : ");
 				String title = sc.nextLine();
 				System.out.println("내용 : ");
 				String body = sc.nextLine();
 				
 //				System.out.printf("%s,%s\n", title, body);
-				Article article = new Article(id, title, body);
+				Article article = new Article(id, regDate, title, body);
 				articles.add(article);
 				
 				
@@ -75,7 +76,7 @@ public class Main {
 					continue;
 				} else {
 					System.out.printf("번호 : %d\n", foundArticle.id);
-					System.out.printf("날짜 : %s\n", "12-12-12 12:12:12");
+					System.out.printf("날짜 : %s\n", foundArticle.regDate);
 					System.out.printf("제목 : %s\n", foundArticle.title);
 					System.out.printf("내용 : %s\n", foundArticle.body);
 				}
@@ -93,11 +94,13 @@ public class Main {
 
 class Article{
 	int id;
+	String regDate;
 	String title;
 	String body;
 	
-	Article(int id, String title, String body){
+	Article(int id, String regDate, String title, String body){
 		this.id = id;
+		this.regDate = regDate;
 		this.title = title;
 		this.body = body;
 	}
