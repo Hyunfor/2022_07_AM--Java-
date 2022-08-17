@@ -5,14 +5,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+	
+	private static List<Article> articles;
+
+	static {
+		articles = new ArrayList<>();
+	}
+	
 	public static void main(String[] args) {
 		System.out.println("==프로그램 시작==");
 
-		Scanner sc = new Scanner(System.in);
+		makeTestData();
 		
-		int lastArticleId = 0; // 반복하면 안되니까 while 외부에.
+		Scanner sc = new Scanner(System.in); 
 		
-		List<Article> articles = new ArrayList<>(); // article만 저장하는 저장소.
+		int lastArticleId = 3; 
 		
 		while(true) { // 명령어 무한 반복
 			System.out.printf("명령어) ");
@@ -151,6 +158,14 @@ public class Main {
 		System.out.println("==프로그램 끝==");
 	}
 	
+	private static void makeTestData() {
+		System.out.println("테스트를 위한 데이터를 생성합니다.");
+
+		articles.add(new Article(1, Util.getDateStr(), "제목1", "내용1", 10));
+		articles.add(new Article(2, Util.getDateStr(), "제목2", "내용2", 20));
+		articles.add(new Article(3, Util.getDateStr(), "제목3", "내용3", 30));
+	}
+	
 }
 
 class Article{
@@ -160,13 +175,18 @@ class Article{
 	String body;
 	int hit;
 	
-	Article(int id, String regDate, String title, String body){
+	public Article(int id, String regDate, String title, String body) {
+		this(id, regDate, title, body, 0);
+	}
+	
+	public Article(int id, String regDate, String title, String body, int hit){
 		this.id = id;
 		this.regDate = regDate;
 		this.title = title;
 		this.body = body;
-		this.hit = 0; // 처음 게시글 작성시 조회수는 0
+		this.hit = hit;
 	}
+	
 	public void increaseHit() {
 		hit++;
 	}
