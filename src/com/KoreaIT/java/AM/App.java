@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import com.KoreaIT.java.AM.controller.ArticleController;
+import com.KoreaIT.java.AM.controller.MemberController;
 import com.KoreaIT.java.AM.dto.Article;
 import com.KoreaIT.java.AM.dto.Member;
 import com.KoreaIT.java.AM.util.Util;
@@ -24,9 +26,11 @@ public class App {
 		makeTestData();
 
 		Scanner sc = new Scanner(System.in);
+		
+		MemberController memberController = new MemberController(sc, members);
+		ArticleController articleController = new ArticleController();
 
 		int lastArticleId = 3;
-		int lastMemberId = 0;
 
 		while (true) { // 명령어 무한 반복
 			System.out.printf("명령어) ");
@@ -40,49 +44,9 @@ public class App {
 				System.out.println("명령어를 입력해주세요");
 				continue;
 			}
-			if (cmd.equals("member join")) {
-				String loginId = null;
-				String loginPw = null;
-				String loginPwC = null;
+			if (cmd.equals("member join")) {	
 				
-				int id = lastMemberId + 1;
-				lastMemberId = id;
-				String regDate = Util.getDateStr();
-				while(true) {
-					System.out.printf("아이디 : ");
-					loginId = sc.nextLine();
-					
-					if(isJoinableLoinId(loginId) == false) { // 아이디 중복체크
-						System.out.printf("%s 는(은) 이미 사용중인 아이디입니다.\n", loginId);
-						continue;
-					}
-					
-					break;
-					
-				}
-				
-				while(true) {
-					System.out.printf("비밀번호 : ");
-					loginPw = sc.nextLine();
-					System.out.printf("비밀번호 확인 : ");
-					loginPwC = sc.nextLine();
-					
-					if(loginPw.equals(loginPwC) == false) { // 비밀번호 확인
-						System.out.println("비밀번호를 다시 입력해 주세요.");
-						continue;
-					}
-					
-					break;
-					
-				}
-				
-				System.out.printf("이름 : ");
-				String name = sc.nextLine();
-
-				Member member = new Member(id, regDate, loginId, loginPw, name);
-				members.add(member);
-
-				System.out.printf("%d번 글이 생성되었습니다.\n", id);
+				memberController.doJoin(members, sc);
 
 			} else if (cmd.equals("article write")) {
 				int id = lastArticleId + 1; // id에 덮어씌워 1씩 증가
@@ -171,28 +135,6 @@ public class App {
 		sc.close();
 
 		System.out.println("==프로그램 끝==");
-	}
-
-	private boolean isJoinableLoinId(String loginId) {
-		int index = getMemberIndexByLoginId(loginId);
-		
-		if(index == -1) { // -1은 중복되는 아이디를 찾지 못했다.
-			return true;
-		}
-		
-		return false;
-	}
-
-	private int getMemberIndexByLoginId(String loginId) {
-		int i = 0;
-		for(Member member : members) {
-			
-			if(member.loginId.equals(loginId)) {
-				return i;
-			}
-			i++;
-		}
-		return -1;
 	}
 
 	private static int getArticleIndexById(int id) { // 게시글 삭제 중복 코드 제거 
