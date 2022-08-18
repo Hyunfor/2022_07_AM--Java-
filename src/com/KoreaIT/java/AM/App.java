@@ -5,14 +5,17 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.KoreaIT.java.AM.dto.Article;
+import com.KoreaIT.java.AM.dto.Member;
 import com.KoreaIT.java.AM.util.Util;
 
 public class App {
 	
 	private static List<Article> articles;
+	private static List<Member> members;
 
 	public App() {
 		articles = new ArrayList<>();
+		members = new ArrayList<>();
 	}
 
 	public void run() {
@@ -23,6 +26,7 @@ public class App {
 		Scanner sc = new Scanner(System.in);
 
 		int lastArticleId = 3;
+		int lastMemberId = 0;
 
 		while (true) { // 명령어 무한 반복
 			System.out.printf("명령어) ");
@@ -36,7 +40,25 @@ public class App {
 				System.out.println("명령어를 입력해주세요");
 				continue;
 			}
-			if (cmd.equals("article write")) {
+			if (cmd.equals("member join")) {
+				int id = lastMemberId + 1;
+				lastMemberId = id;
+				String regDate = Util.getDateStr();
+				System.out.printf("아이디 : ");
+				String loginId = sc.nextLine();
+				System.out.printf("비밀번호 : ");
+				String loginPw = sc.nextLine();
+				System.out.printf("비밀번호 확인 : ");
+				String loginPwC = sc.nextLine();
+				System.out.printf("이름 : ");
+				String name = sc.nextLine();
+
+				Member member = new Member(id, regDate, loginId, loginPw, name);
+				members.add(member);
+
+				System.out.printf("%d번 글이 생성되었습니다.\n", id);
+
+			} else if (cmd.equals("article write")) {
 				int id = lastArticleId + 1; // id에 덮어씌워 1씩 증가
 				lastArticleId = id;
 				String regDate = Util.getDateStr();
