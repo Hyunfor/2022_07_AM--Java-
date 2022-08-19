@@ -18,7 +18,7 @@ public class MemberController {
 
 	int lastMemberId = 0;
 
-	public void doJoin(List<Member> members, Scanner sc) {
+	public void doJoin() {
 		String loginId = null;
 		String loginPw = null;
 		String loginPwC = null;
