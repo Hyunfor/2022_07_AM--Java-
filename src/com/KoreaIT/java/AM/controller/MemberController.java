@@ -3,6 +3,7 @@ package com.KoreaIT.java.AM.controller;
 import java.util.List;
 import java.util.Scanner;
 
+import com.KoreaIT.java.AM.dto.Article;
 import com.KoreaIT.java.AM.dto.Member;
 import com.KoreaIT.java.AM.util.Util;
 
@@ -60,6 +61,19 @@ public class MemberController {
 		System.out.printf("%d번 회원이 생성되었습니다.\n", id);
 
 	}
+	
+	public void memberlist() {
+		if (members.size() == 0) {
+			System.out.println("가입자가 없습니다");
+			return;
+		}
+		System.out.println("번호    |    회원	  |	  이름");
+		for (int i = members.size() - 1; i >= 0; i--) { // 게시판 글확인은 역순으로.
+			Member member = members.get(i);
+			System.out.printf("%4d    |    %s	|	%s\n", member.id, member.loginId, member.name);
+		}
+		
+	}
 
 	private boolean isJoinableLoginId(String loginId) {
 		int index = getMemberIndexByLoginId(loginId);
@@ -82,5 +96,7 @@ public class MemberController {
 		}
 		return -1;
 	}
+
+	
 
 }
