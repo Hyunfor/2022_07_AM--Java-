@@ -62,19 +62,6 @@ public class MemberController {
 
 	}
 	
-	public void memberlist() {
-		if (members.size() == 0) {
-			System.out.println("가입자가 없습니다");
-			return;
-		}
-		System.out.println("번호    |    회원	  |	  이름");
-		for (int i = members.size() - 1; i >= 0; i--) { // 게시판 글확인은 역순으로.
-			Member member = members.get(i);
-			System.out.printf("%4d    |    %s	|	%s\n", member.id, member.loginId, member.name);
-		}
-		
-	}
-
 	private boolean isJoinableLoginId(String loginId) {
 		int index = getMemberIndexByLoginId(loginId);
 
@@ -90,6 +77,59 @@ public class MemberController {
 		for (Member member : members) {
 
 			if (member.loginId.equals(loginId)) {
+				return i;
+			}
+			i++;
+		}
+		return -1;
+	}
+
+	public void memberList() {
+		if (members.size() == 0) {
+			System.out.println("가입자가 없습니다");
+			return;
+		}
+		System.out.println("번호    |    회원	  |	  이름");
+		for (int i = members.size() - 1; i >= 0; i--) { // 회원확인은 역순으로.
+			Member member = members.get(i);
+			System.out.printf("%4d    |    %s	|	%s\n", member.id, member.loginId, member.name);
+		}
+		
+	}
+	
+	public void memberDetail(String cmd) {
+		String[] cmdBits = cmd.split(" ");
+
+		int id = Integer.parseInt(cmdBits[2]);
+
+		Member foundMember = getMemberById(id);
+
+		if (foundMember == null) {
+			System.out.printf("%d번 존재하지 않는 회원입니다.\n", id);
+			return;
+		}
+
+		System.out.printf("번호 : %d\n", foundMember.id);
+		System.out.printf("아이디 : %s\n", foundMember.loginId);
+		System.out.printf("이름 : %s\n", foundMember.name);
+		
+	}
+
+	private Member getMemberById(int id) {
+		int index = getMemberIndexById(id);
+
+		if (index != -1) {
+			return members.get(index);
+		}
+
+		return null;
+	}
+
+	private int getMemberIndexById(int id) {
+		int i = 0;
+		for (Member member : members) {
+
+			if (member.id == id) {
 				return i;
 			}
 			i++;

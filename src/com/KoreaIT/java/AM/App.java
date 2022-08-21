@@ -45,9 +45,13 @@ public class App {
 				
 				memberController.doJoin();
 
-			} else if(cmd.equals("member list")) {
+			} else if(cmd.equals("member list")) { // 회원목록 확인
 				
-				memberController.memberlist();
+				memberController.memberList();
+				
+			} else if(cmd.startsWith("member detail ")) { // 회원정보 조회
+				
+				memberController.memberDetail(cmd);
 				
 			} else if (cmd.equals("article write")) {
 				
