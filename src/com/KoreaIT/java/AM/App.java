@@ -53,6 +53,10 @@ public class App {
 				
 				memberController.memberDetail(cmd);
 				
+			} else if (cmd.startsWith("member modify ")) { // 회원정보 수정.
+				
+				memberController.memberModify(cmd);
+				
 			} else if (cmd.equals("article write")) {
 				
 				articleController.doWrite();

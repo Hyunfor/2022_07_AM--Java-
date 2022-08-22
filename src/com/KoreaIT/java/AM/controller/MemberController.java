@@ -114,6 +114,40 @@ public class MemberController {
 		System.out.printf("이름 : %s\n", foundMember.name);
 		
 	}
+	
+	public void memberModify(String cmd) {
+		String[] cmdBits = cmd.split(" ");
+
+		int id = Integer.parseInt(cmdBits[2]);
+
+		Member foundMember = getMemberById(id);
+
+		if (foundMember == null) {
+			System.out.printf("%d번 회원은 존재하지 않습니다.\n", id);
+			return;
+		}
+		
+		System.out.printf("새 이름 : ");
+		String name = sc.nextLine();
+		while (true) {
+			System.out.printf("비밀번호 : ");
+			String loginPw = sc.nextLine();
+			System.out.printf("비밀번호 확인: ");
+			String loginPwC = sc.nextLine();
+
+			if (loginPw.equals(loginPwC) == false) { // 비밀번호 확인
+				System.out.println("비밀번호를 다시 입력해주세요");
+				continue;
+			}
+			break;
+		}
+
+		foundMember.name = name;
+
+		System.out.printf("%d번 회원정보를 수정했습니다.\n", id);
+		
+	}
+
 
 	private Member getMemberById(int id) {
 		int index = getMemberIndexById(id);
@@ -137,6 +171,7 @@ public class MemberController {
 		return -1;
 	}
 
+	
 	
 
 }
