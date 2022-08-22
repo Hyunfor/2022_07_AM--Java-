@@ -147,6 +147,24 @@ public class MemberController {
 		System.out.printf("%d번 회원정보를 수정했습니다.\n", id);
 		
 	}
+	
+	
+	public void memberDelete(String cmd) {
+		String[] cmdBits = cmd.split(" ");
+
+		int id = Integer.parseInt(cmdBits[2]); 
+
+		int foundIndex = getMemberIndexById(id);
+
+		if (foundIndex == -1) {
+			System.out.printf("%d번 회원은 존재하지 않습니다.\n", id);
+			return;
+		}
+
+		members.remove(foundIndex);
+		System.out.printf("%d번 회원 탈퇴 처리 되었습니다.\n", id);
+
+	}
 
 
 	private Member getMemberById(int id) {
@@ -170,6 +188,8 @@ public class MemberController {
 		}
 		return -1;
 	}
+
+	
 
 	
 	

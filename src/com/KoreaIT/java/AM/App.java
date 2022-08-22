@@ -57,6 +57,10 @@ public class App {
 				
 				memberController.memberModify(cmd);
 				
+			} else if (cmd.startsWith("member delete ")) { // 회원탈퇴
+				
+				memberController.memberDelete(cmd);
+				
 			} else if (cmd.equals("article write")) {
 				
 				articleController.doWrite();
