@@ -83,6 +83,13 @@ public class MemberController {
 		}
 		return -1;
 	}
+	public void memberLogin() {
+		System.out.println("====로그인=====");
+		
+		
+		
+	}
+
 
 	public void memberList() {
 		if (members.size() == 0) {
@@ -189,6 +196,7 @@ public class MemberController {
 		return -1;
 	}
 
+	
 	
 
 	
