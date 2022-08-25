@@ -71,6 +71,20 @@ public class MemberController {
 
 		return false;
 	}
+	
+	public void dologoin() {
+		
+		
+	}
+
+	
+	public void dologout() {
+		
+		String loginId = null;
+		System.out.println("로그아웃 되었습니다.");
+	}
+
+	
 
 	private int getMemberIndexByLoginId(String loginId) {
 		int i = 0;
@@ -83,13 +97,6 @@ public class MemberController {
 		}
 		return -1;
 	}
-	public void memberLogin() {
-		System.out.println("====로그인=====");
-		
-		
-		
-	}
-
 
 	public void memberList() {
 		if (members.size() == 0) {
@@ -195,6 +202,9 @@ public class MemberController {
 		}
 		return -1;
 	}
+
+	
+	
 
 	
 	

@@ -40,11 +40,14 @@ public class App {
 			if (cmd.length() == 0) { // 키보드 커맨드가 0인 경우.
 				System.out.println("명령어를 입력해주세요");
 				continue;
-			}
-			if (cmd.equals("member join")) {	
+			} if (cmd.equals("member join")) {	
 				
 				memberController.doJoin();
 
+			} else if(cmd.equals("member logout")) { // 로그아웃
+				
+				memberController.dologout();
+				
 			} else if(cmd.equals("member list")) { // 회원목록 확인
 				
 				memberController.memberList();
