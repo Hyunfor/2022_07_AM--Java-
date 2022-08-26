@@ -13,6 +13,7 @@ public class App {
 	
 	private static List<Article> articles;
 	private static List<Member> members;
+	public static Member loginedMember = null;
 
 	public App() {
 		articles = new ArrayList<>();
@@ -44,9 +45,13 @@ public class App {
 				
 				memberController.doJoin();
 
-			} else if(cmd.equals("member logout")) { // 로그아웃
+			} else if(cmd.startsWith("member login ")) { // 로그인
 				
-				memberController.dologout();
+				memberController.dologin(cmd);
+				
+			} else if(cmd.startsWith("member logout ")) { // 로그아웃
+				
+				memberController.dologout(cmd);
 				
 			} else if(cmd.equals("member list")) { // 회원목록 확인
 				

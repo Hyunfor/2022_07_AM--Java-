@@ -3,6 +3,7 @@ package com.KoreaIT.java.AM.controller;
 import java.util.List;
 import java.util.Scanner;
 
+import com.KoreaIT.java.AM.App;
 import com.KoreaIT.java.AM.dto.Article;
 import com.KoreaIT.java.AM.dto.Member;
 import com.KoreaIT.java.AM.util.Util;
@@ -72,13 +73,33 @@ public class MemberController {
 		return false;
 	}
 	
-	public void dologoin() {
+	public void dologin(String cmd) {
+		String[] cmdBits = cmd.split(" ");
+
+		int id = Integer.parseInt(cmdBits[2]);
 		
+		System.out.println("아이디 : ");
+		String loginId = sc.nextLine();
+		System.out.println("비밀번호 : ");
+		String loginPw = sc.nextLine();
 		
+		int flag = 0; // 0 로그인 실패 , 1 로그인 성공
+		
+		for(int i = 0; i < members.size(); i++) {
+			Member member = members.get(i);
+			
+			if(member.equals(loginId)) { // 아이디가 존재할 때
+				if(member.equals(loginId)) {
+					App.loginedMember = member;
+					flag = 1;
+					System.out.println(member + "님 반갑습니다.");
+				}
+			}
+		}
 	}
 
 	
-	public void dologout() {
+	public void dologout(String cmd) {
 		
 		String loginId = null;
 		System.out.println("로그아웃 되었습니다.");
