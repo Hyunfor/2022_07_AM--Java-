@@ -83,18 +83,22 @@ public class MemberController {
 		System.out.println("비밀번호 : ");
 		String loginPw = sc.nextLine();
 		
-		int flag = 0; // 0 로그인 실패 , 1 로그인 성공
+		int flag = 0; // 0 로그인 성공 , 1 로그인 실패
 		
 		for(int i = 0; i < members.size(); i++) {
 			Member member = members.get(i);
 			
-			if(member.equals(loginId)) { // 아이디가 존재할 때
-				if(member.equals(loginId)) {
+			if(member.loginId.equals(loginId)) { // 아이디가 존재할 때
+				if(member.loginPw.equals(loginPw)) {
 					App.loginedMember = member;
 					flag = 1;
 					System.out.println(member + "님 반갑습니다.");
 				}
 			}
+		}
+		
+		if(flag == 0) {
+			System.out.println("로그인 실패. 다시 시도하십시오.");
 		}
 	}
 
