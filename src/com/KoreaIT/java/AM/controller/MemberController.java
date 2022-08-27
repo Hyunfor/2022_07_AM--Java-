@@ -83,7 +83,7 @@ public class MemberController {
 		System.out.println("비밀번호 : ");
 		String loginPw = sc.nextLine();
 		
-		int flag = 0; // 0 로그인 성공 , 1 로그인 실패
+		int flag = 0; // 1 로그인 성공 , 0 로그인 실패
 		
 		for(int i = 0; i < members.size(); i++) {
 			Member member = members.get(i);
